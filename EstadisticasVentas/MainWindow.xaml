@@ -1,0 +1,55 @@
+﻿<Window x:Class="EstadisticasVentas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+        xmlns:local="clr-namespace:EstadisticasVentas"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="1000">
+    <Grid Margin="0,3,0,0">
+        <!-- Columnas: izquierda (verde claro), derecha (blanca) -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Panel izquierdo con fondo verde claro -->
+        <Border Grid.Column="0" Background="#DFFFE0" Margin="0,0,0,-1" Grid.RowSpan="2">
+
+            <StackPanel Margin="30,0,30,0" Height="399">
+                <Image Source="Recursos/Logo-Herbal.png"
+                       Width="181" 
+                       Height="84"
+                       Stretch="Uniform"
+                       HorizontalAlignment="Left"/>
+
+                <TextBlock FontSize="24" FontWeight="Bold" Foreground="Black" Text="Menú de estadísticas" Margin="0 0 0 20" Height="42"/>
+                <TextBlock Foreground="Black" FontSize="14" TextWrapping="Wrap" Height="32"><Run Text="Seleccione una opción:" /></TextBlock>
+                <ComboBox Width="226"
+                          Height="22"
+                          FontSize="14"
+                          Padding="10,0"
+                          Background="White"
+                          Foreground="Black"
+                          BorderBrush="White"
+                          BorderThickness="2"
+                          HorizontalAlignment="Left">
+                    <ComboBoxItem Content="Ventas mensuales"/>
+                    <ComboBoxItem Content="Top 10 más vendidos"/>
+                    <ComboBoxItem Content="Opción 3"/>
+                </ComboBox>
+                <!-- Botones -->
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Left">
+                    <Button Content="Siguiente" Padding="10 5" Background="Green" Foreground="White" Width="88" Click="Button_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Panel derecho como contenedor dinámico -->
+        <Border Grid.Column="1" Background="White">
+            <ContentControl x:Name="ContenedorVistas"/>
+        </Border>
+        <!-- <lvc:CartesianChart x:Name="miGrafica" Grid.Row="1" /> -->
+    </Grid>
+</Window>
