@@ -23,57 +23,12 @@ namespace EstadisticasVentas
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ISeries[] Series { get; set; }
-        public Axis[] XAxes { get; set; }
-        public Axis[] YAxes { get; set; }
-
         public MainWindow()
         {
             InitializeComponent(); 
         }
 
         private void miComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-        private void CreaModelo()
-        {
-            List<string> Productos = new List<string>();
-            List<int> CantVend = new List<int>();
-
-            //estadisticas.TraerMasVendidos(ref Productos, ref CantVend);
-
-            // Configurar los datos
-            Series = new ISeries[]
-            {
-                new ColumnSeries<int>
-                {
-                    Name = "Ventas",
-                    Values =  CantVend,
-                    XToolTipLabelFormatter = point => $"{Productos[point.Index]}"
-                }
-            };
-
-            XAxes = new Axis[]
-            {
-                new Axis
-                {
-                    Labels = Productos,
-                    LabelsRotation = 15
-                }
-            };
-
-            YAxes = new Axis[]
-            {
-                new Axis
-                {
-                    Name = "Cantidad"
-                }
-            };
-        }
-
-        private void CargarGrafica(int opcion)
         {
             
         }
@@ -85,8 +40,26 @@ namespace EstadisticasVentas
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            VentasMensuales.VentasMensuales ventanaVentas = new VentasMensuales.VentasMensuales();
-            ContenedorVistas.Content = ventanaVentas;
+            if (comboVentana.SelectedIndex == 0)
+            {
+                VentasMensuales.VentasMensuales ventanaVentas = new VentasMensuales.VentasMensuales();
+                ContenedorVistas.Content = ventanaVentas;
+            }
+            else if(comboVentana.SelectedIndex == 1)
+            {
+                MasVendidos.Top10 ventanaTop10 = new MasVendidos.Top10();
+                ContenedorVistas.Content = ventanaTop10;
+            }
+            else if(comboVentana.SelectedIndex == 2)
+            {
+                UtilidadPorProducto.UtilidadPorProducto ventanaUtilidad = new UtilidadPorProducto.UtilidadPorProducto();
+                ContenedorVistas.Content = ventanaUtilidad;
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
         }
     }
 }

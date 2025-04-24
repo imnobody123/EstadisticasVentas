@@ -23,11 +23,31 @@ namespace BLL
 
         public DataTable VentasMensualkes(DateTime FechaInicio, DateTime FechaFin)
         {
-            /* Agrega un mes y quita un día para dejarlo
-             en el último día del mes seleccionado
-            */
-            FechaFin = FechaFin.AddMonths(1).AddDays(-1);
-            return MasVendidos.VentasMensuales(FechaInicio, FechaFin);
+            try
+            {
+                /* 
+                Agrega un mes y quita un día para dejarlo
+                en el último día del mes seleccionado
+                */
+                FechaFin = FechaFin.AddMonths(1).AddDays(-1);
+                return MasVendidos.VentasMensuales(FechaInicio, FechaFin);
+            }
+            catch(Exception error)
+            {
+                throw new Exception("Ocurrió un error al procesar las ventas mensuales", error);
+            }
+        }
+
+        public DataTable UtilidadesProductos()
+        {
+            try
+            {
+                return MasVendidos.VistaUtilidadProductos();
+            }
+            catch(Exception error)
+            {
+                throw new Exception("Hubo un problema al procesar la información", error);
+            }
         }
     }
 }

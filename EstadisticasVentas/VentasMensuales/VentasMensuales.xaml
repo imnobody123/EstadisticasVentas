@@ -43,7 +43,7 @@
 
         <DataGrid x:Name="dgvVentasMensuales"
           d:ItemsSource="{d:SampleData ItemCount=5}"
-          Margin="18,137,13,131"
+          Margin="18,137,13,14"
           ColumnHeaderHeight="35"
           IsReadOnly="True">
             <!-- Estilo de encabezado -->
@@ -57,7 +57,6 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
 
-            
         </DataGrid>
         <Label Content="Mes de Inicio:" 
                HorizontalAlignment="Left" 

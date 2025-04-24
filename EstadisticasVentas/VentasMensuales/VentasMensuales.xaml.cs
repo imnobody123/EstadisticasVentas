@@ -30,11 +30,18 @@ namespace EstadisticasVentas.VentasMensuales
 
         private void btnProcesa_Click(object sender, RoutedEventArgs e)
         {
-            DateTime FechaInicio = Convert.ToDateTime(dateFechaInicio.SelectedDate);
-            DateTime FechaFin = Convert.ToDateTime(dateFechaFin.SelectedDate);
-            System.Diagnostics.Debug.WriteLine("La fecha es " + FechaInicio);
-            System.Diagnostics.Debug.WriteLine("La fecha es " + FechaFin);
-            dgvVentasMensuales.ItemsSource = estadisticas.VentasMensualkes(FechaInicio, FechaFin).DefaultView;
+            try
+            {
+                DateTime FechaInicio = Convert.ToDateTime(dateFechaInicio.SelectedDate);
+                DateTime FechaFin = Convert.ToDateTime(dateFechaFin.SelectedDate);
+
+                dgvVentasMensuales.ItemsSource = estadisticas.VentasMensualkes(FechaInicio, FechaFin).DefaultView;
+            }
+            catch(Exception error)
+            {
+                MessageBox.Show($"Error: {error.Message}");
+                MessageBox.Show("Detalle técnico: " + error.InnerException?.Message);
+            }
         }
 
         private void DatePickerMes1_Loaded(object sender, RoutedEventArgs e)

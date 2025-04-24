@@ -61,13 +61,32 @@ namespace DPL
             }
             catch (SqlException ex)
             {
-                System.Diagnostics.Debug.WriteLine("El error fue " + ex.Message);
                 throw new Exception("Error al conectar a la base de datos", ex);
             }
-            catch(Exception error)
+        }
+
+        public DataTable VistaUtilidadProductos()
+        {
+            try
             {
-                System.Diagnostics.Debug.WriteLine("El error fue " + error.Message);
-                throw new Exception("Error al conectar a la base de datos", error);
+                using (SqlConnection Conexion = CreaConexion())
+                {
+                    Conexion.Open();
+                    using (SqlCommand Comando = new SqlCommand("SELECT * FROM UtilidadesPorProducto ORDER BY [Utilidad P Mayoreo] DESC", Conexion))
+                    {
+                        Comando.CommandType = CommandType.Text;
+                        using (SqlDataReader Reader = Comando.ExecuteReader())
+                        {
+                            DataTable TablaUtilidad = new DataTable();
+                            TablaUtilidad.Load(Reader);
+                            return TablaUtilidad;
+                        }
+                    }
+                }
+            }
+            catch(SqlException ex)
+            {
+                throw new Exception("Error técnico en base de datos...", ex);
             }
         }
     }

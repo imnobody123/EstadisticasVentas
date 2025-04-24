@@ -12,8 +12,8 @@ namespace DPL
         protected SqlConnection CreaConexion()
         {
             string Cadena = string.Empty;
-            //Cadena = @"Server=tcp:SERVIDORHP\HERBAL,49500; DataBase= herbal; user id=AppHerbalV2; Password= Admin*12;";
-            Cadena = @"Server=localhost; DataBase=herbal;user id=AppHerbalV2;Password=Admin*12;TrustServerCertificate=True;";
+            Cadena = @"Server=tcp:SERVIDORHP\HERBAL,49500; DataBase= herbal; user id=AppHerbalV2; Password= Admin*12;TrustServerCertificate=True;";
+            //Cadena = @"Server=localhost; DataBase=herbal;user id=AppHerbalV2;Password=Admin*12;TrustServerCertificate=True;";
             return new SqlConnection(Cadena);
         }
     }

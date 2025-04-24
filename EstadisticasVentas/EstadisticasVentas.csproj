@@ -16,4 +16,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Recursos\Logo-Herbal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
